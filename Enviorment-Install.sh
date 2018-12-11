@@ -2,7 +2,8 @@
 # Run: sudo yum -y install git
 #  curl -L  https://github.com/azorac/sandstorm/raw/master/Enviorment-Install.sh | bash
 #Install aditional applications
-#sudo yum -y install nano
+#sudo yum -y install nano net-tools
+#
 
 #Clone openstack-lab
 git clone git://git.openstack.org/openstack/training-labs --branch master
@@ -49,6 +50,10 @@ sudo yum -y install qemu-kvm libvirt libvirt-python libguestfs-tools virt-instal
 #Install and configure network bridge utilities to enable VM to communicate to the rest of the world
 sudo yum -y install bridge-utils
 sudo usermod -aG libvirt `id -un`
+
+#Configure KVM group
+# Change  "sudo nano /etc/group" from >> TO
+#kvm:x:36:qemu >> kvm:x:78:qemu
 
 #Set autostart and Start libvirtd
 sudo systemctl enable libvirtd

@@ -21,9 +21,9 @@ EOM
 #Modify files
 ##
 #Controller
-ex -s -c '%s/VM_MEM=5120/VM_MEM=6144/g|x' $OS_ST/config/config.controller
-ex -s -c '%s/# VM_CPUS=1/VM_CPUS=2/g|x' $OS_ST/config/config.controller
+ex -s -c '%s/VM_MEM=5120/VM_MEM=6144/g|x' /home/azorac/OpenStack-lab/labs/config/config.controller
+ex -s -c '%s/# VM_CPUS=1/VM_CPUS=2/g|x' /home/azorac/OpenStack-lab/labs/config/config.controller
 
 #Compute1
-ex -s -c '%s/VM_MEM=1024/VM_MEM=8192/g|x' $OS_ST/config/config.compute1
-ex -s -c '%s/SECOND_DISK_SIZE=1280/SECOND_DISK_SIZE=25600/g|x' $OS_ST/config/config.compute1
+ex -s -c '%s/VM_MEM=1024/VM_MEM=8192/g|x' /home/azorac/OpenStack-lab/labs/config/config.compute1
+ex -s -c '%s/SECOND_DISK_SIZE=1280/SECOND_DISK_SIZE=25600/g|x' /home/azorac/OpenStack-lab/labs/config/config.compute1

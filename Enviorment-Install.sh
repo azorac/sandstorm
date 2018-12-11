@@ -1,8 +1,8 @@
 #!/bin/sh
 # Run: sudo yum -y install git
-#
+#  curl -L  https://github.com/azorac/sandstorm/raw/master/Enviorment-Install.sh | bash
 #Install aditional applications
-yum -y install nano
+#sudo yum -y install nano
 
 #Clone openstack-lab
 git clone git://git.openstack.org/openstack/training-labs --branch master
@@ -11,7 +11,7 @@ git clone git://git.openstack.org/openstack/training-labs --branch master
 mv training-labs OpenStack-lab
 
 #Set up variables
-cat <<'EOM' >> ~/.bashrc
+sudo cat <<'EOM' >> ~/.bashrc
 
 OS_LAB=/home/azorac/OpenStack-lab
 OS_ST=/home/azorac/OpenStack-lab/labs

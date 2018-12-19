@@ -1,0 +1,1 @@
+virt-install -n test -r 2048 --vcpus=2 --accelerate --nographics -v -l /home/azorac/VMos/CentOS-7-x86_64-Minimal-1810.iso --disk path=/home/azorac/VMos/test.img,size=20 --initrd-inject preseed.cfg --extra-args="ks=file:/preseed.cfg console=tty0 console=ttyS0,115200"

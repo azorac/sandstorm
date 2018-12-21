@@ -28,7 +28,7 @@ sudo mkdir /vm/disk
 ##
 #set VM folder ACL
 ##
-sudo setfacl -m g:libvirt:r /vm
+sudo setfacl -m g:libvirt:rx /vm
 sudo setfacl -m g:libvirt:rx /vm/iso
 sudo setfacl -m g:libvirt:rwx /vm/disk
 

@@ -15,7 +15,7 @@ sudo yum -y install bridge-utils
 sudo usermod -aG libvirt $USER #add installing user to the libvirt group
 
 #Configure network
-sudo echo 'BRIDGE=br0' >> /etc/sysconfig/network-scripts/ifcfg-eno1
+echo BRIDGE=br0 | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eno1
 sudo mv sandstorm/ifcfg-br0 /etc/sysconfig/network-scripts/
 
 ##

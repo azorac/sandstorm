@@ -1,0 +1,8 @@
+# VM external access bridge
+DEVICE="br0"
+BOOTPROTO="dhcp"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+ONBOOT="yes"
+TYPE="Bridge"
+DELAY="0"

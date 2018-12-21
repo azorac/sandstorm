@@ -35,6 +35,7 @@ sudo setfacl -m g:libvirt:rwx /vm/disk
 #Set autostart and Start libvirtd
 sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
+export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 ##
 # Download CentOS iso

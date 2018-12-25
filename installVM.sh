@@ -67,14 +67,12 @@ sleep 1
 #Use ARP to get IP from MAC
 while true; do
 	#Get IP address from VM
-	#VM_IP_Addr=$(for mac in `virsh domiflist $VM_NAME | grep -o -E "([0-9a-f]{2}:){5}([0-9a-f]{2})"`; do arp -e | grep $mac  |grep -o -P "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}" ; done)
 	max=254
 	for i in `seq 100 $max`
 	do
-			echo "T" > /dev/udp/192.168.1.$i/3000
+		echo "T" > /dev/udp/192.168.1.$i/3000
 	done
 
-	echo "T" > /dev/udp/192.168.1.$i/3000
 	VM_IP_Addr=$(arp -e | grep $VM_MAC_Addr | grep -o -P "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}")
 	if [ "$VM_IP_Addr" != "" ]; then
 		logOut "IP found ($VM_IP_Addr)"

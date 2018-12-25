@@ -1,1 +1,0 @@
-virt-install -n test -r 2048 --vcpus=2 --accelerate --nographics -v -l /vm/iso/centos.iso --disk path=/vm/disk/test.img,size=10 --initrd-inject preseed.cfg --extra-args="ks=file:/preseed.cfg console=tty0 console=ttyS0,115200"

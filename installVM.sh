@@ -57,7 +57,7 @@ logOut () {
 ##
 # Start install
 ##
-virt-install -n $VM_NAME -r $VM_RAM --vcpus=$VM_VCPU --accelerate --nographics -v -l /vm/iso/centos.iso --network=bridge=br0,model=virtio --disk path=/vm/disk/$VM_NAME.img,size=$VM_DISKSIZE --initrd-inject preseed.cfg --extra-args="ks=file:/preseed.cfg console=tty0 console=ttyS0,115200" --noautoconsole > logOut
+virt-install -n $VM_NAME -r $VM_RAM --vcpus=$VM_VCPU --accelerate --nographics -v -l /vm/iso/centos.iso --network=bridge=br0,model=virtio --disk path=/vm/disk/$VM_NAME.img,size=$VM_DISKSIZE --initrd-inject preseed.cfg --extra-args="ks=file:/preseed.cfg console=tty0 console=ttyS0,115200" --noautoconsole > /dev/null 2>&1 &
 
 ####
 # Get MAC
@@ -119,7 +119,7 @@ while true; do
 done
 
 logOut "Starting VM!"
-virsh start $VM_NAME > logOut
+virsh start $VM_NAME > /dev/null 2>&1 &
 
 #Return new VM IP address if not in debugmode
 if [ $DEBUG_LEVEL == 0 ]; then

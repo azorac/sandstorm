@@ -1,8 +1,16 @@
 ####
 # Variables
 ####
+
+#Defined by args
 DEBUG_LEVEL=0
 VM_NAME=""
+VM_RAM=2048
+VM_VCPU=2
+VM_DISKSIZE=10
+
+
+#Set by script
 VM_MAC_Addr=""
 VM_IP_Addr=""
 VM_State=""
@@ -15,7 +23,16 @@ while [ "$1" != "" ]; do
         -n | --name )           shift
                                 VM_NAME=$1
                                 ;;
-        -d | --debuglevel )     shift
+        -r | --ram )     		shift
+								VM_RAM=$1
+                                ;;
+		-v | --vcpus )    		shift
+								VM_VCPU=$1
+                                ;;
+		-s | --sizedisk )    	shift
+								VM_DISKSIZE=$1
+                                ;;
+		-d | --debuglevel )     shift
 								DEBUG_LEVEL=$1
                                 ;;
         * )                     usage
@@ -40,7 +57,7 @@ logOut () {
 ##
 # Start install
 ##
-virt-install -n $VM_NAME -r 2048 --vcpus=2 --accelerate --nographics -v -l /vm/iso/centos.iso --network=bridge=br0,model=virtio --disk path=/vm/disk/$VM_NAME.img,size=20 --initrd-inject preseed.cfg --extra-args="ks=file:/preseed.cfg console=tty0 console=ttyS0,115200" --noautoconsole > logOut
+virt-install -n $VM_NAME -r $VM_RAM --vcpus=$VM_VCPU --accelerate --nographics -v -l /vm/iso/centos.iso --network=bridge=br0,model=virtio --disk path=/vm/disk/$VM_NAME.img,size=$VM_DISKSIZE --initrd-inject preseed.cfg --extra-args="ks=file:/preseed.cfg console=tty0 console=ttyS0,115200" --noautoconsole > logOut
 
 ####
 # Get MAC
@@ -103,6 +120,11 @@ done
 
 logOut "Starting VM!"
 virsh start $VM_NAME > logOut
+
+#Return new VM IP address if not in debugmode
+if [ $DEBUG_LEVEL == 0 ]; then
+		echo "$VM_IP_Addr"
+fi 
 
 logOut "To connect to the VM use:"
 logOut "--------------------------"

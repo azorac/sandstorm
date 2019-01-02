@@ -37,6 +37,20 @@ sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
+#Setup SSH keys
+echo "Setting up SSH keys..."
+ssh-keygen -f id_rsa -t rsa -N ''
+
+#Enable use of SSH keys to new VMs (appending to VM kickstart file)
+echo "%post --log=/root/postinstall.log"  >> sandstorm/preseed.cfg
+echo "mkdir -m0700 /root/.ssh/" >> sandstorm/preseed.cfg
+echo -n 'echo "' >> sandstorm/preseed.cfg
+echo -n "$(cat .ssh/id_rsa.pub)" >> sandstorm/preseed.cfg
+echo ' > /root/.ssh/authorized_keys"' >> sandstorm/preseed.cfg
+echo "chmod 0600 /root/.ssh/authorized_keys" >> sandstorm/preseed.cfg
+echo "restorecon -R /root/.ssh/"  >> sandstorm/preseed.cfg
+echo "%end"  >> sandstorm/preseed.cfg
+
 ##
 # Download CentOS iso
 ##

@@ -46,7 +46,7 @@ echo "%post --log=/root/postinstall.log"  >> sandstorm/preseed.cfg
 echo "mkdir -m0700 /root/.ssh/" >> sandstorm/preseed.cfg
 echo -n 'echo "' >> sandstorm/preseed.cfg
 echo -n "$(cat .ssh/id_rsa.pub)" >> sandstorm/preseed.cfg
-echo ' > /root/.ssh/authorized_keys"' >> sandstorm/preseed.cfg
+echo '" > /root/.ssh/authorized_keys' >> sandstorm/preseed.cfg
 echo "chmod 0600 /root/.ssh/authorized_keys" >> sandstorm/preseed.cfg
 echo "restorecon -R /root/.ssh/"  >> sandstorm/preseed.cfg
 echo "%end"  >> sandstorm/preseed.cfg
